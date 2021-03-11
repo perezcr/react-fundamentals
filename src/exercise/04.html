@@ -1,24 +1,37 @@
-<!-- Creating custom components -->
-<!-- http://localhost:3000/isolated/exercise/04.html -->
+<!-- Using JSX -->
+<!-- http://localhost:3000/isolated/exercise/03.html -->
 
 <body>
   <div id="root"></div>
   <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+
   <script type="text/babel">
-    // 🐨 Make a function called `message` which returns the JSX we want to share
+    // `type="text/babel"` babel will compile this code for the browser to run.
 
-    // 🐨 use that function in place of the divs below with:
-    // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
-    const element = (
-      <div className="container">
-        <div className="message">Hello World</div>
-        <div className="message">Goodbye World</div>
-      </div>
-    )
+    // 🐨 re-implement this using JSX!
+    /* const element = React.createElement('div', {
+      className: 'container',
+      children: 'Hello World',
+    }) */
 
-    // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
-    ReactDOM.render(element, document.getElementById('root'))
+    // 💰 there are a few subtle differences between JSX and HTML. One such
+    // difference is how you apply a class to an element in JSX is by using
+    // `className` rather than `class`!
+    // 📜  You can learn the differences between JSX and HTML syntax from the React docs here:
+    // https://reactjs.org/docs/dom-elements.html#differences-in-attributes
+
+    // Using JSX
+    const className = 'container';
+    const children = 'Hello World';
+    const props = {className, children};
+    // You can't put statements inside curly bracets (interpolation) just expressions
+    // const element = <div className={if (className === 'not-allowed'){ return 'container'; }}>{children}</div>;
+    // const element = <div className={className}>{children}</div>;
+    const element = <div {...props} />;
+
+    ReactDOM.render(element, document.getElementById('root'));
   </script>
 </body>
